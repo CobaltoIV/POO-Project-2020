@@ -155,7 +155,7 @@ class MDL_edges extends Edges {
 
                     if (N_K[j][c] * N_J[k][c] != 0) {
 
-                        temp = (double) ((N_C[c] * N_jkc[j][k][c]) / (N_K[j][c] * N_J[k][c]));
+                        temp =  ((N_C[c] * (double) N_jkc[j][k][c]) / (N_K[j][c] * N_J[k][c]));
                         p = (double) N_jkc[j][k][c] / N;
 
                         if (temp != 0) {
@@ -177,7 +177,9 @@ class MDL_edges extends Edges {
 
         }
 
-        score = score - ((s * (r - 1) * (q - 1)) / 2) / Math.log((double) N);
+        double g = (((double)s * ((double)r - 1) * ((double)q - 1)) / 2) * Math.log((double) N);
+        System.out.println(g);
+        score = score - (((double)s * ((double)r - 1) * ((double)q - 1)) / 2) / Math.log((double) N);
         return score;
     }
 

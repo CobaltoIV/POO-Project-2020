@@ -38,7 +38,7 @@ public class testMain {
         int [] values  = {0,1};
 
         Decider banana = new Decider();
-        Edges e = banana.decideType(0);
+        Edges e = banana.decideType(1);
         alpha a = new alpha();
 
 
