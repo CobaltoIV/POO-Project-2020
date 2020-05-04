@@ -1,41 +1,41 @@
 package scoring;
 
-public class alpha {
+import java.util.ArrayList;
+
+public class alpha{
 
     private double weigth;
-    private int[][][] Source;
+    private int [][][] Source;
 
-    public double getWeigth() {
-        return this.weigth;
+    public double getWeigth(){
+       return this.weigth;
     }
-
-    public int[][][] getSource() {
+    public int [][][]getSource(){
         return this.Source;
     }
-
-    public double setWeigth(double weigth) {
+    public double setWeigth(double weigth){
         return this.weigth = weigth;
     }
-
-    public int[][][] setSource(int[][][] Source) {
+    public int[][][] setSource (int [][][] Source){
         return this.Source = Source;
     }
 
-    public int[][][] calcN(int[] parent, int[] parentvalues, int[] son, int[] sonvalues, int[] classes,
-            int[] classvalues) {
 
-        int[][][] N_jkc = new int[parentvalues.length][sonvalues.length][classvalues.length];
+    public int[][][] calcN(ArrayList<Integer> parent, int[] parentvalues,ArrayList<Integer> son, int[] sonvalues , ArrayList<Integer> classes, int[] classvalues)
+    {
 
-        for (int d = 0; d < parent.length; d++) {
+        int [][][] N_jkc = new int[parentvalues.length][sonvalues.length][classvalues.length];
 
-            for (int k = 0; k < sonvalues.length; k++) {
+        for (int d=0;  d< parent.size() ;d++){
 
-                for (int j = 0; j < parentvalues.length; j++) {
+            for (int k=0; k<sonvalues.length; k++){
 
-                    for (int c = 0; c < classvalues.length; c++) {
+                for (int j=0;j< parentvalues.length;j++){
 
-                        if (parent[d] == parentvalues[j] && son[d] == sonvalues[k] && classes[d] == classvalues[c])
-                            N_jkc[j][k][c]++;
+                    for (int c = 0; c< classvalues.length;c++){
+
+                       if (parent.get(d) == parentvalues[j] && son.get(d) == sonvalues[k] && classes.get(d) == classvalues[c])
+                       N_jkc[j][k][c]++;
                     }
                 }
 
