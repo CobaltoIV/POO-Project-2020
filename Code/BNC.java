@@ -1,27 +1,40 @@
-import java.util.*;
+import data.*;
+import scoring.*;
+//import java.util.*;
+
 public class BNC {
 
-    protected Graph G;
+    public static void main(String[] args) {
 
-    public Graph buildGraph(Edges connections){
-        return 0;
+        InputHandler TrainData = new InputHandler();
+        TrainData.parseFile(args[0]);
+        InputHandler TestData = new InputHandler();
+        TestData.parseFile(args[1]);
+        Decider banana = new Decider();
+        Edges e = banana.decideType(args[2]);
+        e.generateScores(TrainData);
+
+
+
+
     }
+    // Code to print files
+/* ArrayList<String> labels = inputHandler.getLabels();
+        Map<String, ArrayList<Integer>> values = inputHandler.getValues();
 
-    public int[] classify(Map data){
+        System.out.println(labels);
+        for (String key: labels)
+            System.out.println(values.get(key));
 
-       return results;
-    }
+        inputHandler.parseFile(args[1]);
+        labels = inputHandler.getLabels();
+        values = inputHandler.getValues();
+
+        System.out.println(labels);
+        for (String key: labels)
+            System.out.println(values.get(key)); */
+
 
 }
 
-class Graph{
-    protected java.util.List<Node> Seats;
-   
-}
-
-class Nodes{
-   // to be decided protected parent;
-
-    int[][][] teta;
-}
 
