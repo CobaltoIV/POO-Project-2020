@@ -5,24 +5,16 @@ import java.util.stream.Collectors;
 public class InputHandler {
     private ArrayList<String> _labels;
     private Map<String, ArrayList<Integer>> _values;
-    private Map<String, ArrayList<Integer>> _valuesUnique;
 
-    private String _filename;
-
-    public InputHandler (String filename){
-        _filename = filename;
-    }
-
-    public void parseFile() {
+    public void parseFile(String filename) {
         String line;
         String splitToken = ",";
         
         _labels = new ArrayList<String>();
         _values = new HashMap<String, ArrayList<Integer>>();
-        _valuesUnique= new HashMap<String, ArrayList<Integer>>();
         
         try {
-            BufferedReader br = new BufferedReader(new FileReader(_filename));
+            BufferedReader br = new BufferedReader(new FileReader(filename));
 
             // Parse features/class line
             line = br.readLine();
@@ -39,10 +31,6 @@ public class InputHandler {
                     _values.get(tmpLabels[i]).add(Integer.parseInt(instance[i]));
                 }   
             }
-            
-            // Get unique values for each feature
-            for (String key : _labels)
-                _valuesUnique.put(key, new ArrayList<Integer>(_values.get(key).stream().distinct().collect(Collectors.toList())));
 
             br.close();
 
@@ -60,6 +48,9 @@ public class InputHandler {
     }
     
     public Map<String, ArrayList<Integer>> getValuesUnique (){
-        return _valuesUnique;
+        Map<String, ArrayList<Integer>> valuesUnique = new HashMap<String, ArrayList<Integer>>();
+        for (String key : _labels)
+            valuesUnique.put(key, new ArrayList<Integer>(_values.get(key).stream().distinct().collect(Collectors.toList())));
+        return valuesUnique;
     }
 }
