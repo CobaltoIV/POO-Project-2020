@@ -23,7 +23,7 @@ public class alpha {
     public int[][][] setSource(int[][][] Source) {
         return this.Source = Source;
     }
-    /* public void printSource(){
+    public void printSource(){
 
 
         for(int j=0;j<2;j++){
@@ -38,7 +38,7 @@ public class alpha {
 
         }
 
-    } */
+    }
 
     public int[][][] calcN(ArrayList<Integer> parent, ArrayList<Integer> parentvalues, ArrayList<Integer> son,
             ArrayList<Integer> sonvalues, ArrayList<Integer> classes, ArrayList<Integer> classvalues) {

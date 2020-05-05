@@ -47,7 +47,10 @@ public class Edges {
         Map<String, ArrayList<Integer>> train = Data.getValues();
         Map<String, ArrayList<Integer>> unique = Data.getValuesUnique();
         ArrayList<String> labels = Data.getLabels();
-        ArrayList<String> features = labels;
+
+        ArrayList<String> features = new ArrayList<String>();
+        features.addAll(labels);
+
         features.remove(features.size() - 1);
 
         System.out.println(features.size());
@@ -60,6 +63,7 @@ public class Edges {
                     a.setSource(a.calcN(train.get(parent), unique.get(parent), train.get(son), unique.get(son),
                             train.get(class_key), unique.get(class_key)));
                     System.out.println("i= "+i+"j= "+j+" ");
+                    System.out.println(parent + " " + " "+ son + " " + class_key);
                     a.setWeigth(this.calcScore(a));
                     this.setMatrixElement(a, i, j);
                 } else{
@@ -83,6 +87,7 @@ class LL_edges extends Edges {
         double score = 0;
         int[][][] N_jkc = a.getSource();
 
+        a.printSource();
         int q = N_jkc.length;
         int r = N_jkc[0].length;
         int s = N_jkc[0][0].length;
@@ -94,6 +99,7 @@ class LL_edges extends Edges {
         double p;
         double n;
         double temp;
+
 
         for (int k = 0; k < r; k++) {
 
@@ -110,6 +116,10 @@ class LL_edges extends Edges {
             }
         }
 
+        System.out.println("N= "+ N);
+        System.out.println("r = "+r);
+        System.out.println("q = "+q);
+        System.out.println("s = "+s);
         for (int k = 0; k < r; k++) {
 
             for (int j = 0; j < q; j++) {
@@ -118,8 +128,8 @@ class LL_edges extends Edges {
 
                     if ((N_K[j][c] * N_J[k][c]) != 0) {
 
-                        temp = ((N_C[c] * (double) N_jkc[j][k][c]) / (N_K[j][c] * N_J[k][c]));
-                        p = (double) N_jkc[j][k][c] / N;
+                        temp = ((double) N_C[c] * (double) N_jkc[j][k][c]) / ((double)N_K[j][c] * (double)N_J[k][c]);
+                        p = (double) N_jkc[j][k][c] / (double)N;
 
                         if (temp != 0) {
 
@@ -128,12 +138,15 @@ class LL_edges extends Edges {
 
                             score += p * n;
 
+
                         } else {
                             score += 0;
+                            System.out.println("Passou aqui Interior " + score);
                         }
 
                     } else {
                         score += 0;
+                        System.out.println("Passou aqui " + score);
                     }
                 }
             }
@@ -178,6 +191,7 @@ class MDL_edges extends Edges {
             }
         }
 
+        System.out.println("N= "+ N);
         for (int k = 0; k < r; k++) {
 
             for (int j = 0; j < q; j++) {
@@ -186,8 +200,8 @@ class MDL_edges extends Edges {
 
                     if (N_K[j][c] * N_J[k][c] != 0) {
 
-                        temp = ((N_C[c] * (double) N_jkc[j][k][c]) / (N_K[j][c] * N_J[k][c]));
-                        p = (double) N_jkc[j][k][c] / N;
+                        temp = ((double) N_C[c] * (double) N_jkc[j][k][c]) / ((double)N_K[j][c] * (double)N_J[k][c]);
+                        p = (double) N_jkc[j][k][c] / (double)N;
 
                         if (temp != 0) {
 

@@ -23,6 +23,22 @@ public class alpha {
     public int[][][] setSource(int[][][] Source) {
         return this.Source = Source;
     }
+    public void printSource(){
+
+
+        for(int j=0;j<2;j++){
+            System.out.println("j ="+j);
+            for(int k=0;k<2;k++){
+                for(int c=0;c<2;c++){
+                    System.out.print(" " + this.getSource()[j][k][c]);
+                }
+                System.out.println();
+
+            }
+
+        }
+
+    }
 
     public int[][][] calcN(ArrayList<Integer> parent, ArrayList<Integer> parentvalues, ArrayList<Integer> son,
             ArrayList<Integer> sonvalues, ArrayList<Integer> classes, ArrayList<Integer> classvalues) {
@@ -53,22 +69,7 @@ public class alpha {
             }
 
         }
-        /*
-         * for (int d=0; d< parent.size() ;d++){
-         *
-         * for (int k=0; k<sonvalues.size(); k++){
-         *
-         * for (int j=0;j< parentvalues.size();j++){
-         *
-         * for (int c = 0; c< classvalues.size();c++){
-         *
-         * if (parent.get(d) == parentvalues.get(j) && son.get(d) == sonvalues.get(k) &&
-         * classes.get(d) == classvalues.get(c)) N_jkc[j][k][c]++; } }
-         *
-         * }
-         *
-         * }
-         */
+
         return N_jkc;
     }
 
