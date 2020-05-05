@@ -50,18 +50,21 @@ public class Edges {
         ArrayList<String> features = labels;
         features.remove(features.size() - 1);
 
+        System.out.println(features.size());
         String class_key = labels.get(labels.size() - 1);
         for (String parent : features) {
 
             for (String son : features) {
                 alpha a = new alpha();
-                if (j > i) {
+                if (j > i ) {
                     a.setSource(a.calcN(train.get(parent), unique.get(parent), train.get(son), unique.get(son),
                             train.get(class_key), unique.get(class_key)));
+                    System.out.println("i= "+i+"j= "+j+" ");
                     a.setWeigth(this.calcScore(a));
                     this.setMatrixElement(a, i, j);
-                } else
+                } else{
                     this.setMatrixElement(a, i, j);
+                }
                 j++;
             }
             j = 0;
@@ -120,14 +123,11 @@ class LL_edges extends Edges {
 
                         if (temp != 0) {
 
-                            System.out.println("temp = " + temp);
+
                             n = Math.log10(temp) / Math.log10(2);
 
                             score += p * n;
 
-                            System.out.println("Passou aqui" + n);
-                            System.out.println("Passou aqui" + p);
-                            System.out.println("Passou aqui" + score);
                         } else {
                             score += 0;
                         }
@@ -210,7 +210,7 @@ class MDL_edges extends Edges {
 
         double g = (((double) s * ((double) r - 1) * ((double) q - 1)) / 2) * Math.log((double) N);
 
-        score = score - (((double) s * ((double) r - 1) * ((double) q - 1)) / 2) / Math.log((double) N);
+        score = score - g;
         System.out.println("Score = "+score);
         return score;
     }
