@@ -1,7 +1,20 @@
 package scoring;
 
+/**
+ * The Decider class has the porpuse of deciding which type of Edges object will be built (@see scoring.Edges) 
+ * according to the input mode.
+ * <p>
+ * @author Ricardo Antão
+ * @author Francisco Quelincho
+ * @author Guilherme Mascarenhas
+ */
 public class Decider {
 
+    /**
+     * Creates the Edges object with the rigth scoring metric or returns an error when mode is invalid
+     * @param mode
+     * @return
+     */
     public Edges decideType(String mode) {
 
         Edges e;
@@ -15,7 +28,7 @@ public class Decider {
             System.out.println("MDL Scorer created");
             return e;
         } else {
-            System.err.println("Invalid Mode");
+            System.err.println("Error: Invalid Mode");
             System.exit(0);
             return e = new LL_edges();
         }
