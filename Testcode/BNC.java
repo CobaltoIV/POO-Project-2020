@@ -1,3 +1,4 @@
+import classifier.graph;
 import data.*;
 import scoring.*;
 //import java.util.*;
@@ -13,6 +14,8 @@ public class BNC {
         Decider banana = new Decider();
         Edges e = banana.decideType(args[2]);
         e.generateScores(TrainData);
+        graph g = new graph();
+        g.create(e.getMatrix());
 
 
 

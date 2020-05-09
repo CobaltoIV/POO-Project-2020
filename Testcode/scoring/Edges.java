@@ -109,10 +109,10 @@ public abstract class Edges {
             for (String son : features) {
                 alpha a = new alpha();
                 // Since only upper triangular half is filled since the matrix is symmetric
-                if (j > i) {
+                if (j != i) {
                     // Calculate N_ijkc values for the current edge
-                    a.setSource(a.calcN(train.get(parent), unique.get(parent), train.get(son), unique.get(son),
-                            train.get(class_key), unique.get(class_key)));
+                    a.calcN(train.get(parent), unique.get(parent), train.get(son), unique.get(son),
+                            train.get(class_key), unique.get(class_key));
                     System.out.println("i= " + i + "j= " + j + " ");
                     System.out.println(parent + " " + " " + son + " " + class_key);
                     // Calculates weight of connection and stores it in alpha
@@ -147,36 +147,18 @@ class LL_edges extends Edges {
     public double calcScore(alpha a) {
         double score = 0;
         int[][][] N_jkc = a.getSource();
+        double [][] N_K = a.getN_K();
+        double [][] N_J = a.getN_J();
+        double [] N_C = a.getN_C();
+        int N = a.getN();
 
-        // Store number of unique values for each feature and class
         int q = N_jkc.length;
         int r = N_jkc[0].length;
         int s = N_jkc[0][0].length;
-        int N = 0;
-        // Matrixs where values of N^K_ijc and N^J_ikc and N_C are gonna be stored
-        double[][] N_K = new double[q][s];
-        double[][] N_J = new double[r][s];
-        double[] N_C = new double[s];
-
+ 
         double p;
         double n;
         double temp;
-
-        // Obtain values from N_ijkc
-        for (int k = 0; k < r; k++) {
-
-            for (int j = 0; j < q; j++) {
-
-                for (int c = 0; c < s; c++) {
-
-                    N += N_jkc[j][k][c];
-                    N_K[j][c] += N_jkc[j][k][c];
-                    N_J[k][c] += N_jkc[j][k][c];
-                    N_C[c] += N_jkc[j][k][c];
-
-                }
-            }
-        }
 
         // Calculate the LL score
         for (int k = 0; k < r; k++) {
@@ -225,42 +207,28 @@ class MDL_edges extends Edges {
     public double calcScore(alpha a) {
         double score = 0;
         int[][][] N_jkc = a.getSource();
+        double [][] N_K = a.getN_K();
+        double [][] N_J = a.getN_J();
+        double [] N_C = a.getN_C();
+        int N = a.getN();
 
         int q = N_jkc.length;
         int r = N_jkc[0].length;
         int s = N_jkc[0][0].length;
-        int N = 0;
-        int[][] N_K = new int[q][s];
-        int[][] N_J = new int[r][s];
-        int[] N_C = new int[s];
-
+ 
         double p;
         double n;
         double temp;
 
+        // Calculate the LL score
         for (int k = 0; k < r; k++) {
 
             for (int j = 0; j < q; j++) {
 
                 for (int c = 0; c < s; c++) {
 
-                    N += N_jkc[j][k][c];
-                    N_K[j][c] += N_jkc[j][k][c];
-                    N_J[k][c] += N_jkc[j][k][c];
-                    N_C[c] += N_jkc[j][k][c];
-
-                }
-            }
-        }
-
-
-        for (int k = 0; k < r; k++) {
-
-            for (int j = 0; j < q; j++) {
-
-                for (int c = 0; c < s; c++) {
-
-                    if (N_K[j][c] * N_J[k][c] != 0) {
+                    // Conditions to prevent mathematical impossibilities
+                    if ((N_K[j][c] * N_J[k][c]) != 0) {
 
                         temp = ((double) N_C[c] * (double) N_jkc[j][k][c]) / ((double) N_K[j][c] * (double) N_J[k][c]);
                         p = (double) N_jkc[j][k][c] / (double) N;
@@ -278,7 +246,6 @@ class MDL_edges extends Edges {
                     } else {
                         score += 0;
                     }
-
                 }
             }
 
