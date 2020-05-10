@@ -13,9 +13,9 @@ public class graph {
      * Creates a graph using Prim's Algorithm
      * @param maxtrix matrix containing all the alphas
      */
-    public void create(alpha[][] matrix) 
-    {   
-        int n_features=matrix.length; 
+    public void create(alpha[][] matrix)
+    {
+        int n_features=matrix.length;
         boolean [] visited = new boolean[n_features];
         connection aux;
         NodeC C = new NodeC();
@@ -29,25 +29,25 @@ public class graph {
             visited = updateVisited(this.DAG.get(this.DAG.size()-1).getSon(), visited);
         }
         //print
-        this.DAG.forEach(node->System.out.println((node.getParent()+1) + " " + (node.getSon()+1)));
+        //this.DAG.forEach(node->System.out.println((node.getParent()+1) + " " + (node.getSon()+1)));
 
         Iterator<connection> pizzi = this.DAG.iterator();
         aux=pizzi.next();
         aux.setTeta(aux.calcTetaRoot(matrix, this.DAG.get(1).getSon(), aux.getSon()));
-        
+
         while(pizzi.hasNext())
         {
             aux=pizzi.next();
             aux.setTeta(aux.calcTeta(matrix, aux.getParent(), aux.getSon()));
         }
 
-    
+
         C.setTetaC(C.calcTetaC(matrix[this.DAG.get(this.DAG.size()-1).getParent()][this.DAG.get(this.DAG.size()-1).getSon()]));
         this._class_node=C;
     }
 
     protected connection getNextNode(boolean [] visited, alpha [][] matrix)
-    {   
+    {
         double max_value = 0;
         int flag_first = 1;
         int i_max = -1;
@@ -106,12 +106,12 @@ public class graph {
     }
     /**
      * Gets the graph's root node and the first son node
-     * @param matrix matrix containing all the alphas 
+     * @param matrix matrix containing all the alphas
      * @return array list containing the root node the first son node
      */
     protected ArrayList<connection> getRootNode(alpha[][] matrix)
     {
-        ArrayList<connection> init = new ArrayList<connection>(); 
+        ArrayList<connection> init = new ArrayList<connection>();
         // Flag that indicates the first iteration of matrix values
         int flag_first = 1;
 
@@ -123,7 +123,7 @@ public class graph {
         for(int n=0; n<matrix.length; n++)
         {
             for(int k=0; k<n; k++)
-            {   
+            {
                 // Initializes max_value, i_max and j_max with the values of the first iteration
                 if(flag_first == 1)
                 {
@@ -161,4 +161,20 @@ public class graph {
         return this._class_node;
     }
 
+    public void printGraph(ArrayList<String> labels) {
+
+        connection temp;
+        Iterator<connection> node  = this.DAG.iterator();
+        System.out.print("Classifier:         ");
+        while(node.hasNext()){
+            temp = node.next();
+            if (temp.getParent() == -1){
+                System.out.println( labels.get(temp.getSon())  + ":");
+            }
+            else
+            System.out.println("                    " +labels.get(temp.getSon())+ ":" + labels.get(temp.getParent()));
+
+        }
+        System.out.println("");
+    }
 }

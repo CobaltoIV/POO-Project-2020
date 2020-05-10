@@ -113,8 +113,6 @@ public abstract class Edges {
                     // Calculate N_ijkc values for the current edge
                     a.calcN(train.get(parent), unique.get(parent), train.get(son), unique.get(son),
                             train.get(class_key), unique.get(class_key));
-                    System.out.println("i= " + i + "j= " + j + " ");
-                    System.out.println(parent + " " + " " + son + " " + class_key);
                     // Calculates weight of connection and stores it in alpha
                     a.setWeigth(this.calcScore(a));
                     // Saves alpha into adjacency matrix
@@ -128,8 +126,6 @@ public abstract class Edges {
             j = 0;
             i++;
         }
-
-        this.printMatrix();
 
     }
 

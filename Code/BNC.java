@@ -4,11 +4,11 @@ import classifier.BayesClassifier;
 import classifier.graph;
 import data.*;
 import scoring.*;
-//import java.util.*;
 
 public class BNC {
 
     public static void main(String[] args) {
+        long start_time = System.nanoTime();
         InputHandler TrainData = new InputHandler();
         TrainData.parseFile(args[0]);
         InputHandler TestData = new InputHandler();
@@ -20,12 +20,25 @@ public class BNC {
         g.create(e.getMatrix());
         BayesClassifier clf = new BayesClassifier();
         clf.setDAG(g);
+        long stop_train = System.nanoTime();
         ArrayList<Integer> predictions;
         predictions=clf.predict(TestData);
-        predictions.forEach(c->System.out.println(c));
+        long stop_test = System.nanoTime();
+        ArrayList<Integer> real = TestData.getValues().get(TestData.getLabels().get(TestData.getLabels().size()-1));
+        int unique =TestData.getValuesUnique().get(TestData.getLabels().get(TestData.getLabels().size()-1)).size();
+        double train_time = stop_train - start_time;
+        double test_time = stop_test - stop_train;
+        clf.getDAG().printGraph(TestData.getLabels());
+        System.out.println("Time to build:        " + train_time / 1000000+ " (ms) time");
+        System.out.println("Testing the Classifier:");
+        clf.printPredictions(predictions);
+        System.out.println("Time to test:        " + test_time / 1000000+ " (ms) time");
+        clf.measurePerformance(predictions,real,unique,e.getMatrix()[0][1].getN_C(),e.getMatrix()[0][1].getN());
+
 
 
     }
+
     // Code to print files
 /* ArrayList<String> labels = inputHandler.getLabels();
         Map<String, ArrayList<Integer>> values = inputHandler.getValues();

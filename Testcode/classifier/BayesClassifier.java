@@ -15,53 +15,49 @@ public class BayesClassifier implements Scorer {
     public void setDAG(graph dAG) {
         tree = dAG;
     }
-    
-    public ArrayList<Integer> predict(InputHandler data)
-    {
+
+    public graph getDAG(){
+        return this.tree;
+    }
+
+    public ArrayList<Integer> predict(InputHandler data) {
         Map<String, ArrayList<Integer>> test = data.getValues();
         Map<String, ArrayList<Integer>> unique = data.getValuesUnique();
         ArrayList<String> labels = data.getLabels();
         int n_instances = test.get(labels.get(0)).size();
-        ArrayList<Integer> predictions = new ArrayList<Integer>(); 
+        ArrayList<Integer> predictions = new ArrayList<Integer>();
 
         connection actualNode;
         String class_key = labels.get(labels.size() - 1);
-        int uniqueClasses =  unique.get(class_key).size();
+        int uniqueClasses = unique.get(class_key).size();
         int sonValue, parentValue;
         double max = 0;
         int max_class = 0;
-        double [] PB = new double [uniqueClasses];
-        double [] PB_condicionada = new double [uniqueClasses];
+        double[] PB = new double[uniqueClasses];
+        double[] PB_condicionada = new double[uniqueClasses];
 
-        for(int i=0; i<n_instances; i++)
-        {   
+        for (int i = 0; i < n_instances; i++) {
 
-            for(int c=0; c<uniqueClasses; c++)
-            {   
+            for (int c = 0; c < uniqueClasses; c++) {
                 PB[c] = 1;
                 PB_condicionada[c] = 1;
                 Iterator<connection> auxIterator = this.tree.getDAG().iterator();
                 actualNode = auxIterator.next();
                 sonValue = test.get(labels.get(actualNode.getSon())).get(i);
                 PB[c] *= actualNode.getTeta()[0][sonValue][c];
-                while(auxIterator.hasNext())
-                {   
-                    actualNode=auxIterator.next();
+                while (auxIterator.hasNext()) {
+                    actualNode = auxIterator.next();
                     sonValue = test.get(labels.get(actualNode.getSon())).get(i);
                     parentValue = test.get(labels.get(actualNode.getParent())).get(i);
                     PB[c] *= actualNode.getTeta()[parentValue][sonValue][c];
                 }
                 PB[c] *= this.tree.getNodeC().getTetaC()[c];
             }
-            for(int c=0; c<uniqueClasses; c++)
-            {   
-                if(c==0)
-                {
+            for (int c = 0; c < uniqueClasses; c++) {
+                if (c == 0) {
                     max = PB[c];
                     max_class = c;
-                }
-                else if(PB[c] > max)
-                {
+                } else if (PB[c] > max) {
                     max = PB[c];
                     max_class = c;
                 }
@@ -117,7 +113,7 @@ public class BayesClassifier implements Scorer {
         return conf_list;
     }
 
-    public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list, int[] N_C, int N) {
+    public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list, double[] N_C, int N) {
 
         ArrayList<Double> Sens = new ArrayList<Double>();
         Iterator<int[][]> matrix = conf_list.iterator();
@@ -140,7 +136,7 @@ public class BayesClassifier implements Scorer {
         return Sens;
     }
 
-    public ArrayList<Double> calc_Spec(ArrayList<int[][]> conf_list, int[] N_C, int N) {
+    public ArrayList<Double> calc_Spec(ArrayList<int[][]> conf_list, double[] N_C, int N) {
 
         ArrayList<Double> Spec = new ArrayList<Double>();
         Iterator<int[][]> matrix = conf_list.iterator();
@@ -163,8 +159,7 @@ public class BayesClassifier implements Scorer {
         return Spec;
     }
 
-
-    public ArrayList<Double> calc_F1(ArrayList<int[][]> conf_list, int[] N_C, int N) {
+    public ArrayList<Double> calc_F1(ArrayList<int[][]> conf_list, double[] N_C, int N) {
 
         ArrayList<Double> F1 = new ArrayList<Double>();
         Iterator<int[][]> matrix = conf_list.iterator();
@@ -201,13 +196,13 @@ public class BayesClassifier implements Scorer {
             int pred_val = pred.next();
             int real_val = actual.next();
 
-            if(pred_val == real_val)
-            hit++;
+            if (pred_val == real_val)
+                hit++;
             else
-            miss++;
+                miss++;
         }
 
-        Acc = hit/(miss+hit);
+        Acc = hit / (miss + hit);
 
         return Acc;
 
@@ -240,5 +235,29 @@ public class BayesClassifier implements Scorer {
 
 
     }
-    
+
+    public void measurePerformance(ArrayList<Integer> predictions ,ArrayList<Integer> real, int n_unique, double[] N_C, int N){
+
+        ArrayList<int[][]> conf_list = this.calcConfusionMatrix(predictions, real, n_unique);
+        ArrayList<Double> Sens = this.calc_Sens(conf_list, N_C, N);
+        ArrayList<Double> Spec =this.calc_Spec(conf_list, N_C, N);
+        ArrayList<Double> F1 =this.calc_F1(conf_list, N_C, N);
+        Double Acc = this.calc_Acc(predictions, real);
+        this.printMetrics(Acc, Sens, Spec, F1);
+
+
+    }
+
+    public void printPredictions(ArrayList<Integer> predictions){
+        Iterator<Integer> pred = predictions.iterator();
+        int aux;
+        int i=1;
+        while(pred.hasNext()){
+            aux = pred.next();
+
+            System.out.println("-> instance "+ i +":   " + aux );
+            i++;
+        }
+    }
+
 }
