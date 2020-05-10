@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+
+import classifier.BayesClassifier;
 import classifier.graph;
 import data.*;
 import scoring.*;
@@ -6,7 +9,6 @@ import scoring.*;
 public class BNC {
 
     public static void main(String[] args) {
-
         InputHandler TrainData = new InputHandler();
         TrainData.parseFile(args[0]);
         InputHandler TestData = new InputHandler();
@@ -16,8 +18,11 @@ public class BNC {
         e.generateScores(TrainData);
         graph g = new graph();
         g.create(e.getMatrix());
-
-
+        BayesClassifier clf = new BayesClassifier();
+        clf.setDAG(g);
+        ArrayList<Integer> predictions;
+        predictions=clf.predict(TestData);
+        predictions.forEach(c->System.out.println(c));
 
 
     }

@@ -1,11 +1,13 @@
 package classifier;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import scoring.alpha;
 
 public class graph {
-    ArrayList<connection> DAG;
+
+    private ArrayList<connection> DAG;
+    private NodeC _class_node;
 
     /**
      * Creates a graph using Prim's Algorithm
@@ -15,6 +17,8 @@ public class graph {
     {   
         int n_features=matrix.length; 
         boolean [] visited = new boolean[n_features];
+        connection aux;
+        NodeC C = new NodeC();
         this.DAG = getRootNode(matrix);
         visited = updateVisited(this.DAG.get(this.DAG.size()-1).getParent(), visited);
         visited = updateVisited(this.DAG.get(this.DAG.size()-1).getSon(), visited);
@@ -24,8 +28,22 @@ public class graph {
             this.DAG.add(this.getNextNode(visited, matrix));
             visited = updateVisited(this.DAG.get(this.DAG.size()-1).getSon(), visited);
         }
-
+        //print
         this.DAG.forEach(node->System.out.println((node.getParent()+1) + " " + (node.getSon()+1)));
+
+        Iterator<connection> pizzi = this.DAG.iterator();
+        aux=pizzi.next();
+        aux.setTeta(aux.calcTetaRoot(matrix, this.DAG.get(1).getSon(), aux.getSon()));
+        
+        while(pizzi.hasNext())
+        {
+            aux=pizzi.next();
+            aux.setTeta(aux.calcTeta(matrix, aux.getParent(), aux.getSon()));
+        }
+
+    
+        C.setTetaC(C.calcTetaC(matrix[this.DAG.get(this.DAG.size()-1).getParent()][this.DAG.get(this.DAG.size()-1).getSon()]));
+        this._class_node=C;
     }
 
     protected connection getNextNode(boolean [] visited, alpha [][] matrix)
@@ -51,7 +69,7 @@ public class graph {
                             flag_first = 0;
                         }
 
-                        else if (max_value < matrix[i][a].getWeigth())
+                        else if (matrix[i][a].getWeigth() > max_value)
                         {
                             i_max = i;
                             j_max = a;
@@ -131,6 +149,16 @@ public class graph {
         init.add(son);
 
         return init;
+    }
+
+    public ArrayList<connection> getDAG()
+    {
+        return this.DAG;
+    }
+
+    public NodeC getNodeC()
+    {
+        return this._class_node;
     }
 
 }

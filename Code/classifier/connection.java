@@ -33,6 +33,28 @@ public class connection {
         return teta;
     }
 
+    public double [][][] calcTetaRoot(alpha [][] matrix, int parent,  int son)
+    {
+        alpha a = matrix[parent][son];
+
+        int q = 1;
+        int r = a.getSource()[0].length;
+        int s = a.getSource()[0][0].length;
+        int j = 0;
+
+        double [][][] teta = new double[q][r][s];
+
+        for (int k = 0; k < r; k++) 
+        {
+                for (int c = 0; c < s; c++) 
+                {
+                    teta [j][k][c] =( (double)a.getN_J()[k][c] + 0.5 ) / (a.getN_C()[c] + r * 0.5);
+                }
+
+        }
+        return teta;
+    }
+
     connection(int parent, int son)
     {
         this._parent_node=parent;
@@ -48,4 +70,15 @@ public class connection {
     {
         return this._son_node;
     }
+
+    public void setTeta(double [][][] teta)
+    {
+        this.teta=teta;
+    }
+
+    public double [][][] getTeta()
+    {
+        return this.teta;
+    }
+
 }
