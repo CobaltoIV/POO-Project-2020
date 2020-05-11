@@ -7,50 +7,40 @@ import java.util.Iterator;
  * The Alpha class has the purpose of calculating and storing the
  * information of a connection between 2 nodes. Each alpha object encapsulates
  * information about the connection. This state of information contains:
- * <ul>
- * <li>_weigth
- * <li>_Source
- * <li>_N
- * <li>_N_C
- * <li>_N_K
- * <li>_N_J
- * <p>
- *
  * @author Ricardo Antão
  * @author Francisco Quelincho
  * @author Guilherme Mascarenhas
  */
 public class alpha {
-
     /**
-     * The weight of the edge
+     * The weight of the edge calculated through {@link scoring.Edges#calcScore(alpha)}
      */
     private double _weigth;
     /**
-     * The number of every possibility of instance (N_ijkc)
+     * The number of every possibility of instance calculated through {@link scoring.alpha#calcN(ArrayList, ArrayList, ArrayList, ArrayList, ArrayList, ArrayList)}
      */
     private int[][][] _Source;
 
     /**
-     * The number of instances
+     * The number of instances calculated through {@link scoring.alpha#calcN(ArrayList, ArrayList, ArrayList, ArrayList, ArrayList, ArrayList)}
      */
     private int _N;
     /**
-     * The number of instances regarding class possibilities
+     * The number of instances regarding class possibilities calculated through {@link scoring.alpha#calcN(ArrayList, ArrayList, ArrayList, ArrayList, ArrayList, ArrayList)}
      */
     private double [] _N_C;
     /**
-     * The number of instances regarding class and parent node possibilities
+     * The number of instances regarding class and parent node possibilities calculated through {@link scoring.alpha#calcN(ArrayList, ArrayList, ArrayList, ArrayList, ArrayList, ArrayList)}
      */
     private double [][] _N_K;
     /**
-     * The number of instances regarding class and son node possibilities
+     * The number of instances regarding class and son node possibilities calculated through {@link scoring.alpha#calcN(ArrayList, ArrayList, ArrayList, ArrayList, ArrayList, ArrayList)}
      */
     private double [][] _N_J;
 
     /**
      * Getter for _weigth
-     * @return _weigth
+     * @return _weigth (see {@link scoring.alpha#_weigth})
      */
     public double getWeigth() {
         return this._weigth;
@@ -58,7 +48,7 @@ public class alpha {
 
     /**
      * Getter for _Source
-     * @return _Source
+     * @return _Source (see {@link scoring.alpha#_Source})
      */
     public int[][][] getSource() {
         return this._Source;
@@ -66,7 +56,7 @@ public class alpha {
 
     /**
      * Getter for _N
-     * @return N
+     * @return _N (see {@link scoring.alpha#_N})
      */
     public int getN() {
         return this._N;
@@ -74,7 +64,7 @@ public class alpha {
 
     /**
      * Getter for _N_C
-     * @return _N_C
+     * @return _N_C (see {@link scoring.alpha#_N_C})
      */
     public double [] getN_C() {
         return this._N_C;
@@ -83,7 +73,7 @@ public class alpha {
 
     /**
      * Getter for _N_K
-     * @return _N_K
+     * @return _N_K (see {@link scoring.alpha#_N_K})
      */
     public double [][] getN_K() {
         return this._N_K;
@@ -91,7 +81,7 @@ public class alpha {
 
     /**
      * Getter for _N_J
-     * @return _N_J
+     * @return _N_J (see {@link scoring.alpha#_N_J})
      */
     public double [][] getN_J() {
         return this._N_J;
@@ -102,20 +92,19 @@ public class alpha {
     /**
      * Setter for _weigth
      *
-     * @param _weigth - Weigth to be saved
+     * @param _weigth - Weigth to be saved (see {@link scoring.alpha#_weigth})
      */
-    public double setWeigth(double _weigth) {
-        return this._weigth = _weigth;
+    public void setWeigth(double _weigth) {
+        this._weigth = _weigth;
     }
 
     /**
      * Setter for _Source
      *
-     * @param _Source - Source to be saved
-     * @return _Source
+     * @param _Source - Source to be saved (see {@link scoring.alpha#_Source})
      */
-    public int[][][] setSource(int[][][] _Source) {
-        return this._Source = _Source;
+    public void setSource(int[][][] _Source) {
+        this._Source = _Source;
     }
 
     /**

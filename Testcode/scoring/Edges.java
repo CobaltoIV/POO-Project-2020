@@ -9,7 +9,7 @@ import data.*;
  * adjacency matrix. An Edges object encapsulates the information needed to
  * build the MST. This state information includes:
  * <ul>
- * <li>The adjacency matrix
+ * <li>The adjacency matrix {@link scoring.Edges#matrix}
  * </ul>
  * <p>
  *
@@ -28,8 +28,7 @@ public abstract class Edges implements WeigthCalculator{
     /**
      * Method which will be overwritten by subclasses.
      * It calculates the weigth of the connection described by the input alpha.
-     * @param a
-     * @return score
+     * @param a Connection to be weighed {@link scoring.alpha}
      */
     public double calcScore(alpha a) {
         return 0;
@@ -37,7 +36,7 @@ public abstract class Edges implements WeigthCalculator{
 
     /**
      * Returns the adjacency matrix
-     * @return @link matrix
+     * @return  Adjacency matrix {@link scoring.Edges#matrix}
      */
     public alpha[][] getMatrix() {
         return this.matrix;
@@ -53,8 +52,8 @@ public abstract class Edges implements WeigthCalculator{
 
     /**
      * Defines a specific value of the adjacency matrix.
-     * @param i line of the matrix
-     * @param j column of the matrix
+     * @param parent line of the matrix (parent node)
+     * @param son column of the matrix (son node)
      * @param a Edge to be stored
      */
     public void setMatrixElement(alpha a, int parent, int son) {

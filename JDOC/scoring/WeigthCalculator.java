@@ -7,13 +7,13 @@ public interface WeigthCalculator {
 
     /**
      * Method to calculate the weigth of a connection
-     * @param a alpha corresponding to the connection
-     * @return score
+     * @param   a - Connection to be weighed(see {@link scoring.alpha})
+     * @return {@link scoring.alpha#_weigth}
      */
     public double calcScore(alpha a);
     /**
      * Method to generate all the connection weigths between nodes
-     * @param Data Training patterns
+     * @param Data - Training patterns (see {@link data.InputHandler})
      */
     public void generateScores(InputHandler Data);
     /**
