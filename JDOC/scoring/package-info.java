@@ -1,5 +1,5 @@
 /**
- * Provides the classes necessary to create an
+ * Provides the classes and interfaces necessary to create an
  * adjacency matrix from the training data (equivalent to creating a fully connected graph).
  * <p>
  * The scoring framework involves two entities:
