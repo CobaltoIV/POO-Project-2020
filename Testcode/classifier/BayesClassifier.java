@@ -1,11 +1,11 @@
 package classifier;
 
-import evaluation.*;
+
 import java.util.*;
 
 import data.InputHandler;
 
-public class BayesClassifier implements Scorer {
+public class BayesClassifier extends Classifiers {
 
     private graph tree;
 
