@@ -13,17 +13,23 @@ public class BNC {
         TrainData.parseFile(args[0]);
         InputHandler TestData = new InputHandler();
         TestData.parseFile(args[1]);
-        Decider banana = new Decider();
-        Edges e = banana.decideType(args[2]);
+
+        Edges e = TrainData.decideType(args[2]);
         e.generateScores(TrainData);
+
         graph g = new graph();
         g.create(e.getMatrix());
+
         BayesClassifier clf = new BayesClassifier();
         clf.setDAG(g);
+
         long stop_train = System.nanoTime();
+
         ArrayList<Integer> predictions;
         predictions=clf.predict(TestData);
+
         long stop_test = System.nanoTime();
+        
         ArrayList<Integer> real = TestData.getValues().get(TestData.getLabels().get(TestData.getLabels().size()-1));
         int unique =TestData.getValuesUnique().get(TestData.getLabels().get(TestData.getLabels().size()-1)).size();
         double train_time = stop_train - start_time;

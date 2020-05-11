@@ -3,6 +3,9 @@ package data;
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
+import scoring.Edges;
+import scoring.LL_edges;
+import scoring.MDL_edges;
 
 public class InputHandler {
     private ArrayList<String> _labels;
@@ -56,4 +59,20 @@ public class InputHandler {
                     new ArrayList<Integer>(_values.get(key).stream().distinct().collect(Collectors.toList())));
         return valuesUnique;
     }
+    public Edges decideType(String mode) {
+
+        Edges e;
+
+        if (mode.equals("LL")) {
+            e = new LL_edges();
+            return e;
+        } else if (mode.equals("MDL")) {
+            e = new MDL_edges();
+            return e;
+        } else {
+            System.err.println("Error: Invalid Mode");
+            System.exit(0);
+            return e = new LL_edges();
+        }
+}
 }

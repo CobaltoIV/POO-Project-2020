@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Alpha is a class which has the purpose of calculating and storing the
+ * The Alpha class has the purpose of calculating and storing the
  * information of a connection between 2 nodes. Each alpha object encapsulates
  * information about the connection. This state of information contains:
  * <ul>
  * <li>_weigth
  * <li>_Source
+ * <li>_N
+ * <li>_N_C
+ * <li>_N_K
+ * <li>_N_J
  * <p>
  *
  * @author Ricardo Antão
@@ -23,17 +27,30 @@ public class alpha {
      */
     private double _weigth;
     /**
-     * The counts of every possibility of instance (N_ijkc)
+     * The number of every possibility of instance (N_ijkc)
      */
     private int[][][] _Source;
 
+    /**
+     * The number of instances
+     */
     private int _N;
+    /**
+     * The number of instances regarding class possibilities
+     */
     private double [] _N_C;
+    /**
+     * The number of instances regarding class and parent node possibilities
+     */
     private double [][] _N_K;
+    /**
+     * The number of instances regarding class and son node possibilities
+     */
     private double [][] _N_J;
 
     /**
      * Getter for _weigth
+     * @return _weigth
      */
     public double getWeigth() {
         return this._weigth;
@@ -41,23 +58,41 @@ public class alpha {
 
     /**
      * Getter for _Source
+     * @return _Source
      */
     public int[][][] getSource() {
         return this._Source;
     }
 
+    /**
+     * Getter for _N
+     * @return N
+     */
     public int getN() {
         return this._N;
     }
 
+    /**
+     * Getter for _N_C
+     * @return _N_C
+     */
     public double [] getN_C() {
         return this._N_C;
     }
 
+
+    /**
+     * Getter for _N_K
+     * @return _N_K
+     */
     public double [][] getN_K() {
         return this._N_K;
     }
 
+    /**
+     * Getter for _N_J
+     * @return _N_J
+     */
     public double [][] getN_J() {
         return this._N_J;
     }
@@ -66,7 +101,7 @@ public class alpha {
 
     /**
      * Setter for _weigth
-     * 
+     *
      * @param _weigth - Weigth to be saved
      */
     public double setWeigth(double _weigth) {
@@ -75,7 +110,7 @@ public class alpha {
 
     /**
      * Setter for _Source
-     * 
+     *
      * @param _Source - Source to be saved
      * @return _Source
      */
@@ -103,15 +138,14 @@ public class alpha {
     }
 
     /**
-     * Calculates every value of N_ijkc needed for the current edge
-     * 
+     * Calculates every value of N_ijkc needed for the current edge along with the other Ns from the N_ijkc values
+     *
      * @param parent       - Instances of the parent feature
      * @param parentvalues - Unique values of the parent feature
      * @param son          - Instances of the son feature
      * @param sonvalues    - Unique values of the son feature
      * @param classes      - Instances of the classes
      * @param classvalues  - Unique values of the classes
-     * @return _Source
      */
     public void calcN(ArrayList<Integer> parent, ArrayList<Integer> parentvalues, ArrayList<Integer> son,
             ArrayList<Integer> sonvalues, ArrayList<Integer> classes, ArrayList<Integer> classvalues) {
@@ -179,5 +213,6 @@ public class alpha {
         this._Source=N_jkc;
         return;
     }
+
 
 }
