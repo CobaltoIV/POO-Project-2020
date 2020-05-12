@@ -214,23 +214,24 @@ public class BayesClassifier extends Classifiers {
         Iterator<Double> spec = Spec.iterator();
         Iterator<Double> f1 = F1.iterator();
 
-        System.out.println("Acc: " + Acc);
 
-        System.out.print("Sensitivity: [");
+        System.out.println("Resume:       Acc: " + Acc*100);
+
+        System.out.print("              Sensitivity: [");
         while(sens.hasNext()){
-            System.out.print(" " + sens.next());
+            System.out.print(" " + sens.next()*100);
         }
         System.out.println(" ]");
 
-        System.out.print("Specificity: [");
+        System.out.print("              Specificity: [");
         while(spec.hasNext()){
-            System.out.print(" " + spec.next());
+            System.out.print(" " + spec.next()*100);
         }
         System.out.println(" ]");
 
-        System.out.print("F1_score: [");
+        System.out.print("              F1_score: [");
         while(f1.hasNext()){
-            System.out.print(" " + f1.next());
+            System.out.print(" " + f1.next()*100);
         }
         System.out.println(" ]");
 

@@ -2,7 +2,7 @@ package classifier;
 import scoring.alpha;
 
 public class connection {
-    // _son_node's value equals the variable i in Nijkc  
+    // _son_node's value equals the variable i in Nijkc
     private int _son_node;
     private int _parent_node;
     private double [][][] teta;
@@ -17,13 +17,13 @@ public class connection {
 
         double [][][] teta = new double[q][r][s];
 
-        for (int k = 0; k < r; k++) 
+        for (int k = 0; k < r; k++)
         {
 
-            for (int j = 0; j < q; j++) 
+            for (int j = 0; j < q; j++)
             {
 
-                for (int c = 0; c < s; c++) 
+                for (int c = 0; c < s; c++)
                 {
                     teta [j][k][c] =( (double)a.getSource()[j][k][c] + 0.5 ) / (a.getN_K()[j][c] + r * 0.5);
                 }
@@ -44,9 +44,9 @@ public class connection {
 
         double [][][] teta = new double[q][r][s];
 
-        for (int k = 0; k < r; k++) 
+        for (int k = 0; k < r; k++)
         {
-                for (int c = 0; c < s; c++) 
+                for (int c = 0; c < s; c++)
                 {
                     teta [j][k][c] =( (double)a.getN_J()[k][c] + 0.5 ) / (a.getN_C()[c] + r * 0.5);
                 }

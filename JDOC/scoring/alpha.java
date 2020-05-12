@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * The Alpha class has the purpose of storing the
+ * The Alpha class has the purpose of calculating and storing the
  * information of a connection between 2 nodes. Each alpha object encapsulates
- * information about the connection.
- * <p>
- * It contains only one method {@link scoring.alpha#calcN(ArrayList, ArrayList, ArrayList, ArrayList, ArrayList, ArrayList)} 
- * which collects the information about the frequency of each possibility of instance.
- * @author Ricardo Antão 
+ * information about the connection. This state of information contains:
+ * @author Ricardo Antão
  * @author Francisco Quelincho
  * @author Guilherme Mascarenhas
  */
@@ -43,7 +40,7 @@ public class alpha {
 
     /**
      * Getter for _weigth
-     * @return {@link scoring.alpha#_weigth}
+     * @return _weigth (see {@link scoring.alpha#_weigth})
      */
     public double getWeigth() {
         return this._weigth;
@@ -51,7 +48,7 @@ public class alpha {
 
     /**
      * Getter for _Source
-     * @return  {@link scoring.alpha#_Source}
+     * @return _Source (see {@link scoring.alpha#_Source})
      */
     public int[][][] getSource() {
         return this._Source;
@@ -59,7 +56,7 @@ public class alpha {
 
     /**
      * Getter for _N
-     * @return {@link scoring.alpha#_N}
+     * @return _N (see {@link scoring.alpha#_N})
      */
     public int getN() {
         return this._N;
@@ -67,7 +64,7 @@ public class alpha {
 
     /**
      * Getter for _N_C
-     * @return {@link scoring.alpha#_N_C}
+     * @return _N_C (see {@link scoring.alpha#_N_C})
      */
     public double [] getN_C() {
         return this._N_C;
@@ -76,7 +73,7 @@ public class alpha {
 
     /**
      * Getter for _N_K
-     * @return  {@link scoring.alpha#_N_K}
+     * @return _N_K (see {@link scoring.alpha#_N_K})
      */
     public double [][] getN_K() {
         return this._N_K;
@@ -84,7 +81,7 @@ public class alpha {
 
     /**
      * Getter for _N_J
-     * @return {@link scoring.alpha#_N_J}
+     * @return _N_J (see {@link scoring.alpha#_N_J})
      */
     public double [][] getN_J() {
         return this._N_J;

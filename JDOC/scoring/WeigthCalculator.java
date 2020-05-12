@@ -1,8 +1,7 @@
 package scoring;
 import data.*;
 /**
- * A class implements the WeigthCalculator interface when
- * it wants to generate fully connected graph from training data
+ * An interface for the objects which take the training data and generate the fully connected graph
  */
 public interface WeigthCalculator {
 

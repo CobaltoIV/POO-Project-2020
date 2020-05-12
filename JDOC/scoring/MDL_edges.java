@@ -1,7 +1,7 @@
 package scoring;
 
 /**
- * Extends class Edges. It uses the MDL criterion to calculate the weigths
+ * Extends class Edges. It uses the LL score to calculate the weigths
  * <p>
  * @author Ricardo Antão
  * @author Francisco Quelincho

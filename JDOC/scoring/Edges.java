@@ -4,11 +4,13 @@ import java.util.*;
 import data.*;
 
 /**
- * Edges is an abstract class which has the purpose of serving as blueprint for any classes
- * that wish to generate a fully connected graph from the training data.
- * <p>
- * An Edges object consists of an adjacency matrix and the methods
- * to generate it (implemented through the {@link scoring.WeigthCalculator} Interface).
+ * Edges is an abstract class which has the purpose of serving as blueprint for other classes.
+ * These have the purpose of converting the train data into an
+ * adjacency matrix. An Edges object encapsulates the information needed to
+ * build the MST. This state information includes:
+ * <ul>
+ * <li>The adjacency matrix {@link scoring.Edges#matrix}
+ * </ul>
  * <p>
  *
  * @author Ricardo Antão
@@ -24,17 +26,17 @@ public abstract class Edges implements WeigthCalculator{
     protected alpha[][] matrix;
 
     /**
-     * Returns the weigth of the connection described by the input alpha.
-     * @param a Connection to be weighed (see {@link scoring.alpha})
-     * @return {@link scoring.alpha#_weigth}
+     * Method which will be overwritten by subclasses.
+     * It calculates the weigth of the connection described by the input alpha.
+     * @param a Connection to be weighed {@link scoring.alpha}
      */
     public double calcScore(alpha a) {
         return 0;
     }
 
     /**
-     * Getter for the adjacency matrix
-     * @return {@link scoring.Edges#matrix}
+     * Returns the adjacency matrix
+     * @return  Adjacency matrix {@link scoring.Edges#matrix}
      */
     public alpha[][] getMatrix() {
         return this.matrix;

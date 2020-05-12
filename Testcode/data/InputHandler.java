@@ -81,7 +81,7 @@ public class InputHandler {
                     return e = new MDL_edges();
 
 
-                // add if with next counter value for nem criterion
+                // add if() with next counter value for nem criterion
             }
 
             counter++;
