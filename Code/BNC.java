@@ -29,7 +29,7 @@ public class BNC {
         predictions=clf.predict(TestData);
 
         long stop_test = System.nanoTime();
-        
+
         ArrayList<Integer> real = TestData.getValues().get(TestData.getLabels().get(TestData.getLabels().size()-1));
         int unique =TestData.getValuesUnique().get(TestData.getLabels().get(TestData.getLabels().size()-1)).size();
         double train_time = stop_train - start_time;
