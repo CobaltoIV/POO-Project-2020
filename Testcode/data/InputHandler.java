@@ -59,20 +59,37 @@ public class InputHandler {
                     new ArrayList<Integer>(_values.get(key).stream().distinct().collect(Collectors.toList())));
         return valuesUnique;
     }
+
     public Edges decideType(String mode) {
 
         Edges e;
 
-        if (mode.equals("LL")) {
-            e = new LL_edges();
-            return e;
-        } else if (mode.equals("MDL")) {
-            e = new MDL_edges();
-            return e;
-        } else {
-            System.err.println("Error: Invalid Mode");
-            System.exit(0);
-            return e = new LL_edges();
+        ArrayList<String> Criterions = new ArrayList<String>();
+        Criterions.add("LL");
+        Criterions.add("MDL");
+        // add more modes if needed
+
+        int counter = 0;
+        Iterator<String> modes = Criterions.iterator();
+        while (modes.hasNext()) {
+
+            if (mode.equals(modes.next())) {
+                if (counter == 0)
+                    return e = new LL_edges();
+
+                if (counter == 1)
+                    return e = new MDL_edges();
+
+
+                // add if with next counter value for nem criterion
+            }
+
+            counter++;
+
         }
-}
+        System.out.println("Invalid Mode");
+        System.exit(0);
+        return e = new MDL_edges();
+
+    }
 }
