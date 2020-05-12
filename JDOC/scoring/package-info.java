@@ -5,7 +5,7 @@
  * The scoring framework involves two entities:
  * The edges object ({@link scoring.Edges}) and the alpha object({@link scoring.alpha}).
  * <p>
- * The alpha object is used to store the information about one connections in the graph.
+ * The alpha object is used to store the information about one connection in the graph.
  * <p>
  * The edges object is used to store every alpha into an adjacency matrix and
  * will vary according to the scoring criterion used.
