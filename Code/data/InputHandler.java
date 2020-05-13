@@ -23,8 +23,8 @@ public class InputHandler {
     private Map<String, ArrayList<Integer>> _values;
 
     /**
-     * CSV File to be parsed
-     * @param filename
+     * Parses input CSV file intro {@link data.InputHandler#_labels} and {@link data.InputHandler#_values} 
+     * @param filename CSV File to be parsed
      */
     public void parseFile(String filename) {
         String line;
