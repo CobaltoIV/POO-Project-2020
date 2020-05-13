@@ -10,6 +10,11 @@ package scoring;
 
 public class LL_edges extends Edges {
 
+    /**
+     * See {@link scoring.Edges#calcScore}
+     * @param a
+     * @return
+     */
     public double calcScore(alpha a) {
         double score = 0;
         int[][][] N_jkc = a.getSource();

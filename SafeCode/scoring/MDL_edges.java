@@ -8,14 +8,11 @@ package scoring;
  * @author Guilherme Mascarenhas
  */
 
-public class LL_edges extends Edges {
+public class MDL_edges extends Edges
+{
 
-    /**
-     * See {@link scoring.Edges#calcScore}
-     * @param a
-     * @return
-     */
-    public double calcScore(alpha a) {
+    public double calcScore(alpha a)
+    {
         double score = 0;
         int[][][] N_jkc = a.getSource();
         double [][] N_K = a.getN_K();
@@ -61,6 +58,11 @@ public class LL_edges extends Edges {
             }
 
         }
+
+        // Only difference between LL and MDL scores
+        double g = (((double) s * ((double) r - 1) * ((double) q - 1)) / 2) * Math.log((double) N);
+
+        score = score - g;
 
         return score;
     }
