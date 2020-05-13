@@ -45,7 +45,7 @@ public class graph {
         this._class_node = C;
     }
 
-    protected connection getNextNode(boolean[] visited, alpha[][] matrix) {
+    private connection getNextNode(boolean[] visited, alpha[][] matrix) {
         double max_value = 0;
         int flag_first = 1;
         int i_max = -1;
@@ -74,7 +74,7 @@ public class graph {
         return new connection(i_max, j_max);
     }
 
-    protected boolean[] updateVisited(int index, boolean[] visited) {
+    private boolean[] updateVisited(int index, boolean[] visited) {
         visited[index] = true;
         return visited;
     }
@@ -85,7 +85,7 @@ public class graph {
      * @param visited
      * @return
      */
-    protected int checkVisited(boolean[] visited) {
+    private int checkVisited(boolean[] visited) {
         for (int i = 0; i < visited.length; i++) {
             if (visited[i] == false) {
                 return 0;
@@ -100,7 +100,7 @@ public class graph {
      * @param matrix matrix containing all the alphas
      * @return array list containing the root node the first son node
      */
-    protected ArrayList<connection> getRootNode(alpha[][] matrix) {
+    private ArrayList<connection> getRootNode(alpha[][] matrix) {
         ArrayList<connection> init = new ArrayList<connection>();
         // Flag that indicates the first iteration of matrix values
         int flag_first = 1;

@@ -25,7 +25,7 @@ public interface Scorer {
          * @param conf_list  list of confusion matrixes
          * @param N_C {@link scoring.alpha#_N_C} 
          * @param N  {@link scoring.alpha#_N} 
-         * @return Sensitivity
+         * @return
          */
         public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list, double[] N_C, int N);
 
@@ -34,7 +34,7 @@ public interface Scorer {
          * @param conf_list  list of confusion matrixes
          * @param N_C {@link scoring.alpha#_N_C} 
          * @param N  {@link scoring.alpha#_N} 
-         * @return Specificity
+         * @return
          */
         public ArrayList<Double> calc_Spec(ArrayList<int[][]> conf_list, double[] N_C, int N);
 
@@ -43,7 +43,7 @@ public interface Scorer {
          * @param conf_list  list of confusion matrixes
          * @param N_C {@link scoring.alpha#_N_C} 
          * @param N  {@link scoring.alpha#_N} 
-         * @return F1 Score
+         * @return
          */
         public ArrayList<Double> calc_F1(ArrayList<int[][]> conf_list, double[] N_C, int N);
 
@@ -51,7 +51,7 @@ public interface Scorer {
          * Calculates accuracy for each confusion matrix
          * @param predictions predicted values 
          * @param real real values
-         * @return Accuracy
+         * @return
          */
         public double calc_Acc(ArrayList<Integer> predictions, ArrayList<Integer> real);
 
@@ -66,18 +66,18 @@ public interface Scorer {
 
         /**
          * Method that organizes all the methods before
-         * @param predictions predicted values
-         * @param real actual values
-         * @param n_unique number of unique values
-         * @param N_C {@link scoring.alpha#_N_C}
-         * @param N {@link scoring.alpha#_N}
+         * @param predictions
+         * @param real
+         * @param n_unique
+         * @param N_C
+         * @param N
          */
         public void measurePerformance(ArrayList<Integer> predictions, ArrayList<Integer> real, int n_unique,
                         double[] N_C, int N);
 
         /**
          * Prints predictions
-         * @param predictions predicted values
+         * @param predictions
          */
         public void printPredictions(ArrayList<Integer> predictions);
 

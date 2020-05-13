@@ -11,6 +11,7 @@ public interface WeigthCalculator {
      * @return {@link scoring.alpha#_weigth}
      */
     public double calcScore(alpha a);
+       
     /**
      * Method to generate all the connection weigths between nodes
      * @param Data - Training patterns (see {@link data.InputHandler})
