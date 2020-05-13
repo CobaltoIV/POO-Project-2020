@@ -85,6 +85,7 @@ public class InputHandler {
     }
 
     /**
+     * @param  mode criterion used for scoring
      * @return Edge type, based on the chosen score
      */
     public Edges decideType(String mode) {

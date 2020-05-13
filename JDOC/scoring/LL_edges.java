@@ -12,8 +12,8 @@ public class LL_edges extends Edges {
 
     /**
      * See {@link scoring.Edges#calcScore}
-     * @param a
-     * @return
+     * @param a {@link scoring.alpha}
+     * @return  {@link scoring.alpha#_weigth}
      */
     public double calcScore(alpha a) {
         double score = 0;

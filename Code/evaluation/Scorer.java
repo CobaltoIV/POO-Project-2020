@@ -23,21 +23,21 @@ public interface Scorer {
         /**
          * Calculates the sensitivy for each confusion matrix
          * @param conf_list  list of confusion matrixes
-         * @return
+         * @return Sensitivity
          */
         public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list);
 
         /**
          * Calculates the specificity for each confusion matrix
          * @param conf_list  list of confusion matrixes
-         * @return
+         * @return Specificity
          */
         public ArrayList<Double> calc_Spec(ArrayList<int[][]> conf_list);
 
         /**
          * Calculates the F1 Score for each confusion matrix
          * @param conf_list  list of confusion matrixes
-         * @return
+         * @return F1 Score
          */
         public ArrayList<Double> calc_F1(ArrayList<int[][]> conf_list);
 
@@ -45,7 +45,7 @@ public interface Scorer {
          * Calculates accuracy for each confusion matrix
          * @param predictions predicted values
          * @param real real values
-         * @return
+         * @return Accuracy
          */
         public double calc_Acc(ArrayList<Integer> predictions, ArrayList<Integer> real);
 
@@ -60,15 +60,15 @@ public interface Scorer {
 
         /**
          * Method that organizes all the methods before
-         * @param predictions
-         * @param real
-         * @param n_unique
+         * @param predictions predicted values
+         * @param real real values
+         * @param n_unique number of unique values
          */
         public void measurePerformance(ArrayList<Integer> predictions, ArrayList<Integer> real, int n_unique);
 
         /**
          * Prints predictions
-         * @param predictions
+         * @param predictions predicted values
          */
         public void printPredictions(ArrayList<Integer> predictions);
 

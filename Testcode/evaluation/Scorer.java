@@ -23,8 +23,6 @@ public interface Scorer {
         /**
          * Calculates the sensitivy for each confusion matrix
          * @param conf_list  list of confusion matrixes
-         * @param N_C {@link scoring.alpha#_N_C}
-         * @param N  {@link scoring.alpha#_N}
          * @return
          */
         public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list);
@@ -32,8 +30,6 @@ public interface Scorer {
         /**
          * Calculates the specificity for each confusion matrix
          * @param conf_list  list of confusion matrixes
-         * @param N_C {@link scoring.alpha#_N_C}
-         * @param N  {@link scoring.alpha#_N}
          * @return
          */
         public ArrayList<Double> calc_Spec(ArrayList<int[][]> conf_list);
@@ -41,8 +37,6 @@ public interface Scorer {
         /**
          * Calculates the F1 Score for each confusion matrix
          * @param conf_list  list of confusion matrixes
-         * @param N_C {@link scoring.alpha#_N_C}
-         * @param N  {@link scoring.alpha#_N}
          * @return
          */
         public ArrayList<Double> calc_F1(ArrayList<int[][]> conf_list);
@@ -69,8 +63,6 @@ public interface Scorer {
          * @param predictions
          * @param real
          * @param n_unique
-         * @param N_C
-         * @param N
          */
         public void measurePerformance(ArrayList<Integer> predictions, ArrayList<Integer> real, int n_unique);
 

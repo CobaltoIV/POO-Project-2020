@@ -11,6 +11,11 @@ package scoring;
 public class MDL_edges extends Edges
 {
 
+    /**
+     * See {@link scoring.Edges#calcScore}
+     * @param a {@link scoring.alpha}
+     * @return  {@link scoring.alpha#_weigth}
+     */
     public double calcScore(alpha a)
     {
         double score = 0;

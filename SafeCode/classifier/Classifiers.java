@@ -183,25 +183,40 @@ public abstract class Classifiers implements Scorer{
         Iterator<Double> spec = Spec.iterator();
         Iterator<Double> f1 = F1.iterator();
 
+        int i =0;
         System.out.print("Resume:     ");
         System.out.printf("Acc: %.2f",Acc);
         System.out.println();
 
         System.out.print("            Sensitivity: [");
         while(sens.hasNext()){
-            System.out.printf(" %.2f",sens.next());
+            if(i == Sens.size()-1)
+            System.out.printf("W_Avg : %.2f  ",sens.next());
+            else
+            System.out.printf(i + ": %.2f  ",sens.next());
+            i++;
         }
         System.out.println(" ]");
 
+        i = 0;
         System.out.print("            Specificity: [");
         while(spec.hasNext()){
-            System.out.printf(" %.2f" , spec.next());
+            if(i == Spec.size()-1)
+            System.out.printf( "W_Avg: %.2f  " , spec.next());
+            else
+            System.out.printf(i + ": %.2f  " , spec.next());
+            i++;
         }
         System.out.println(" ]");
 
+        i=0;
         System.out.print("            F1_score: [");
         while(f1.hasNext()){
-            System.out.printf(" %.2f" ,f1.next());
+            if(i == F1.size()-1)
+            System.out.printf("W_Avg: %.2f  " , f1.next());
+            else
+            System.out.printf(i + ": %.2f  " ,f1.next());
+            i++;
         }
         System.out.println(" ]");
 
