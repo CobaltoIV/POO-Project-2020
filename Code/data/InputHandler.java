@@ -8,9 +8,24 @@ import scoring.LL_edges;
 import scoring.MDL_edges;
 
 public class InputHandler {
+    /**
+     * ArrayList of the labels extracted from the first line of the CSV file
+     * Calculated through {@link data.InputHandler#parseFile(String)}
+     * Getter {@link data.InputHandler#getLabels()}
+     */
     private ArrayList<String> _labels;
+
+    /**
+     * ArrayList for each feature of the values extracted from the CSV file
+     * Calculated through {@link data.InputHandler#parseFile(String)}
+     * Getter {@link data.InputHandler#getValues()}
+     */
     private Map<String, ArrayList<Integer>> _values;
 
+    /**
+     * Parses input CSV file intro {@link data.InputHandler#_labels} and {@link data.InputHandler#_values} 
+     * @param filename CSV File to be parsed
+     */
     public void parseFile(String filename) {
         String line;
         String splitToken = ",";
@@ -43,15 +58,24 @@ public class InputHandler {
             e.printStackTrace();
         }
     }
-
+    /**
+     * @return _labels (see {@link data.InputHandler#_labels})
+     */
     public ArrayList<String> getLabels() {
         return _labels;
     }
 
+    /**
+     * @return _values (see {@link data.InputHandler#_values})
+     */
     public Map<String, ArrayList<Integer>> getValues() {
         return _values;
     }
 
+    /**
+     * 
+     * @return Unique values for each feature
+     */
     public Map<String, ArrayList<Integer>> getValuesUnique() {
         Map<String, ArrayList<Integer>> valuesUnique = new HashMap<String, ArrayList<Integer>>();
         for (String key : _labels)
@@ -60,6 +84,9 @@ public class InputHandler {
         return valuesUnique;
     }
 
+    /**
+     * @return Edge type, based on the chosen score
+     */
     public Edges decideType(String mode) {
 
         Edges e;
