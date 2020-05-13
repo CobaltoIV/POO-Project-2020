@@ -39,7 +39,7 @@ public class BNC {
         System.out.println("Testing the Classifier:");
         clf.printPredictions(predictions);
         System.out.println("Time to test:        " + test_time / 1000000+ " (ms) time");
-        clf.measurePerformance(predictions,real,unique,e.getMatrix()[0][1].getN_C(),e.getMatrix()[0][1].getN());
+        clf.measurePerformance(predictions,real,unique);
 
 
 

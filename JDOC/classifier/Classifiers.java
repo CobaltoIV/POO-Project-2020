@@ -56,17 +56,25 @@ public abstract class Classifiers implements Scorer{
         return conf_list;
     }
 
-    public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list, double[] N_C, int N) {
+    public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list) {
 
         ArrayList<Double> Sens = new ArrayList<Double>();
         Iterator<int[][]> matrix = conf_list.iterator();
+        double[] N_C  = new double[conf_list.size()];
+        int c = 0;
+        double N =0;
         while (matrix.hasNext()) {
             int[][] aux = matrix.next();
 
             double TP = (double) aux[0][0];
             double FN = (double) aux[1][0];
+            double FP = (double) aux[0][1];
+            double TN = (double) aux[1][1];
+            N = TP+FN+FP+TN;
+            N_C[c] = TP+FN;
             Double sensitivity = (TP) / (TP + FN);
             Sens.add(sensitivity);
+            c++;
         }
 
         double num = 0;
@@ -79,17 +87,27 @@ public abstract class Classifiers implements Scorer{
         return Sens;
     }
 
-    public ArrayList<Double> calc_Spec(ArrayList<int[][]> conf_list, double[] N_C, int N) {
+    public ArrayList<Double> calc_Spec(ArrayList<int[][]> conf_list) {
 
         ArrayList<Double> Spec = new ArrayList<Double>();
         Iterator<int[][]> matrix = conf_list.iterator();
+        double[] N_C  = new double[conf_list.size()];
+        int c = 0;
+        double N =0;
         while (matrix.hasNext()) {
             int[][] aux = matrix.next();
 
-            double TN = (double) aux[1][1];
+
+            double TP = (double) aux[0][0];
+            double FN = (double) aux[1][0];
             double FP = (double) aux[0][1];
+            double TN = (double) aux[1][1];
+            N = TP+FN+FP+TN;
+            N_C[c] = TP+FN;
+
             Double specificity = (TN) / (TN + FP);
             Spec.add(specificity);
+            c++;
         }
 
         double num = 0;
@@ -102,25 +120,34 @@ public abstract class Classifiers implements Scorer{
         return Spec;
     }
 
-    public ArrayList<Double> calc_F1(ArrayList<int[][]> conf_list, double[] N_C, int N) {
+    public ArrayList<Double> calc_F1(ArrayList<int[][]> conf_list) {
 
         ArrayList<Double> F1 = new ArrayList<Double>();
         Iterator<int[][]> matrix = conf_list.iterator();
+        double[] N_C  = new double[conf_list.size()];
+        int c = 0;
+        double N =0;
         while (matrix.hasNext()) {
             int[][] aux = matrix.next();
 
             double TP = (double) aux[0][0];
             double FN = (double) aux[1][0];
             double FP = (double) aux[0][1];
+            double TN = (double) aux[1][1];
+            N = TP+FN+FP+TN;
+            N_C[c] = TP+FN;
+
+
             Double f1_score = (2 * TP) / (2 * TP + FN + FP);
             F1.add(f1_score);
+            c++;
         }
 
         double num = 0;
         for (int i = 0; i < N_C.length; i++) {
             num += ((double) N_C[i]) * (F1.get(i));
         }
-        Double weigthed = num / ((double) N);
+        Double weigthed = num / N;
 
         F1.add(weigthed);
         return F1;
@@ -179,12 +206,12 @@ public abstract class Classifiers implements Scorer{
 
     }
 
-    public void measurePerformance(ArrayList<Integer> predictions ,ArrayList<Integer> real, int n_unique, double[] N_C, int N){
+    public void measurePerformance(ArrayList<Integer> predictions ,ArrayList<Integer> real, int n_unique){
 
         ArrayList<int[][]> conf_list = this.calcConfusionMatrix(predictions, real, n_unique);
-        ArrayList<Double> Sens = this.calc_Sens(conf_list, N_C, N);
-        ArrayList<Double> Spec =this.calc_Spec(conf_list, N_C, N);
-        ArrayList<Double> F1 =this.calc_F1(conf_list, N_C, N);
+        ArrayList<Double> Sens = this.calc_Sens(conf_list);
+        ArrayList<Double> Spec =this.calc_Spec(conf_list);
+        ArrayList<Double> F1 =this.calc_F1(conf_list);
         Double Acc = this.calc_Acc(predictions, real);
         this.printMetrics(Acc, Sens, Spec, F1);
 
