@@ -159,9 +159,9 @@ public class graph {
                 if (temp.getSon() == i) {
 
                     if (temp.getParent() == -1) {
-                        System.out.println("                    " + labels.get(temp.getSon()) + ":");
+                        System.out.println("                    " + labels.get(temp.getSon()) + ": class  ");
                     } else
-                        System.out.println("                    " + labels.get(temp.getSon()) + ":"
+                        System.out.println("                    " + labels.get(temp.getSon()) + ": class  "
                                 + labels.get(temp.getParent()));
 
                     break;
@@ -169,6 +169,7 @@ public class graph {
             }
             node = this.DAG.iterator();
         }
-        System.out.println("");
+        System.out.println("                    class:");
+        System.out.println();
     }
 }
