@@ -23,8 +23,6 @@ public interface Scorer {
         /**
          * Calculates the sensitivy for each confusion matrix
          * @param conf_list  list of confusion matrixes
-         * @param N_C {@link scoring.alpha#_N_C}
-         * @param N  {@link scoring.alpha#_N}
          * @return
          */
         public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list);
