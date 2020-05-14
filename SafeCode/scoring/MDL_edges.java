@@ -12,9 +12,9 @@ public class MDL_edges extends Edges
 {
 
     /**
-     * See {@link scoring.Edges#calcScore}
+     * Uses MDL criterion {@link scoring.WeigthCalculator#calcScore(alpha)}
      * @param a {@link scoring.alpha}
-     * @return  {@link scoring.alpha#_weigth}
+     * @return weight of connection - {@link scoring.alpha#_weigth}
      */
     public double calcScore(alpha a)
     {

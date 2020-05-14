@@ -1,3 +1,4 @@
+package main;
 import java.util.ArrayList;
 
 import classifier.BayesClassifier;
@@ -5,6 +6,9 @@ import classifier.graph;
 import data.*;
 import scoring.*;
 
+/**
+ * The BNC class only contains the main of the project. It's where the workflow of the program is controlled
+ */
 public class BNC {
 
     public static void main(String[] args) {
@@ -46,7 +50,7 @@ public class BNC {
     }
 
     // Code to print files
-/* ArrayList<String> labels = inputHandler.getLabels();
+    /* ArrayList<String> labels = inputHandler.getLabels();
         Map<String, ArrayList<Integer>> values = inputHandler.getValues();
 
         System.out.println(labels);

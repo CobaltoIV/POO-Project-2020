@@ -10,6 +10,7 @@ import data.*;
  * build the MST. This state information includes:
  * <ul>
  * <li>The adjacency matrix {@link scoring.Edges#matrix}
+ * <li>The scoring criterion {@link scoring.WeigthCalculator#calcScore(alpha)}
  * </ul>
  * <p>
  *
@@ -75,7 +76,6 @@ public abstract class Edges implements WeigthCalculator{
 
     /**
      * Creates an adjacency matrix from the data received.
-     * <p>
      *
      * @param Data Instances and their classifications (training data)
      */

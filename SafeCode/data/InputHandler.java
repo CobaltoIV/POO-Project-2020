@@ -94,8 +94,9 @@ public class InputHandler {
     }
 
     /**
+     * Creates the rigth subclass of edges
      * @param  mode criterion used for scoring
-     * @return Edge type, based on the chosen score
+     * @return Edge type, based on the chosen scoring criterion
      */
     public Edges decideType(String mode) {
 
