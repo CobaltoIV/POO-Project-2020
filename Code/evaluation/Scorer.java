@@ -3,7 +3,7 @@ package evaluation;
 import java.util.ArrayList;
 
 /**
- * The interface Scorer contains the functions t evaluate the classifier
+ * The interface Scorer contains the functions to evaluate the classifier
  * performance.
  */
 public interface Scorer {
