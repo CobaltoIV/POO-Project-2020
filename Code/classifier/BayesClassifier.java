@@ -5,23 +5,45 @@ import java.util.*;
 
 import data.InputHandler;
 
-
+/**
+ * The BayesClassifier class extends the Classifiers class {@link classifier.Classifiers}
+ * A BayesClassifier object has a strucutre of nodes (graph) that is used to elaborate a 
+ * list of predictions.
+ * 
+ * @author Ricardo Antão
+ * @author Francisco Quelincho
+ * @author Guilherme Mascarenhas
+ */
 public class BayesClassifier extends Classifiers {
 
+    /**
+     * Graph used by the classifier {see @link classifier.graph}
+     */
     private graph tree;
 
     /**
-     * @param dAG the dAG to set
+     * Setter for DAG
+     * @param DAG - DAG to be saved {@link classifier.graph#DAG}
      */
-    public void setDAG(graph dAG) {
-        tree = dAG;
+    public void setDAG(graph DAG) {
+        tree = DAG;
     }
 
+    /**
+     * Getter for DAG
+     * @return tree (DAG) {@link classifier.graph#DAG}
+     */
     public graph getDAG(){
         return this.tree;
     }
 
+    /**
+     * See {@link classifier.Classifiers#predict(data.InputHandler)}
+     * @param data - received data {@link data.InputHandler}
+     * @return predict - list of predictions
+     */
     public ArrayList<Integer> predict(InputHandler data) {
+        //Gets all needed Values
         Map<String, ArrayList<Integer>> test = data.getValues();
         Map<String, ArrayList<Integer>> unique = data.getValuesUnique();
         ArrayList<String> labels = data.getLabels();
@@ -37,6 +59,7 @@ public class BayesClassifier extends Classifiers {
         double[] PB = new double[uniqueClasses];
         double[] PB_condicionada = new double[uniqueClasses];
 
+        //Calculates the prediction for every instance 
         for (int i = 0; i < n_instances; i++) {
 
             for (int c = 0; c < uniqueClasses; c++) {

@@ -4,13 +4,37 @@ import evaluation.Scorer;
 import java.util.*;
 import data.*;
 
+/**
+ * The Classifiers class has the purpose of serving has a blueprint for 
+ * a classifier. It has the methods needed to evaluate a classifier's 
+ * performance without defining any specific behaviour of the classifier itself.
+ * A Classifiers object can return a list of predictions elaborated by a classifier
+ * 
+ * @author Ricardo Antão
+ * @author Francisco Quelincho
+ * @author Guilherme Mascarenhas
+ */
+
 public abstract class Classifiers implements Scorer{
 
+    /**
+     * Receives data and elaborates a list of predictions
+     * @param data - received data {@link data.InputHandler}
+     * @return predict - list of predictions
+     */
     public ArrayList<Integer> predict(InputHandler data) {
 
         return new ArrayList<Integer>();
     }
 
+    /**
+     * 
+     * {@link evaluation.Scorer}
+     * @param predictions  predicted values
+     * @param real         actual values
+     * @param n_unique     number of unique values
+     * @return Confusion Matrix for each value        
+     */
     public ArrayList<int[][]> calcConfusionMatrix(ArrayList<Integer> predictions, ArrayList<Integer> real,
             int n_unique) {
         ArrayList<int[][]> conf_list = new ArrayList<int[][]>();
@@ -56,6 +80,12 @@ public abstract class Classifiers implements Scorer{
         return conf_list;
     }
 
+    /**
+     * 
+     * {@link evaluation.Scorer}
+     * @param conf_list List of confusion matrixes
+     * 
+     */
     public ArrayList<Double> calc_Sens(ArrayList<int[][]> conf_list) {
 
         ArrayList<Double> Sens = new ArrayList<Double>();
@@ -87,6 +117,12 @@ public abstract class Classifiers implements Scorer{
         return Sens;
     }
 
+    /**
+     * 
+     * {@link evaluation.Scorer}
+     * @param conf_list List of confusion matrixes
+     * 
+     */
     public ArrayList<Double> calc_Spec(ArrayList<int[][]> conf_list) {
 
         ArrayList<Double> Spec = new ArrayList<Double>();
@@ -120,6 +156,12 @@ public abstract class Classifiers implements Scorer{
         return Spec;
     }
 
+    /**
+     * 
+     * {@link evaluation.Scorer}
+     * @param conf_list List of confusion matrixes
+     * 
+     */    
     public ArrayList<Double> calc_F1(ArrayList<int[][]> conf_list) {
 
         ArrayList<Double> F1 = new ArrayList<Double>();
@@ -154,6 +196,14 @@ public abstract class Classifiers implements Scorer{
 
     }
 
+ 
+    /**
+     * 
+     * {@link evaluation.Scorer}
+     * @param predictions  predicted values
+     * @param real         actual values
+     * @return Acc       
+     */
     public double calc_Acc(ArrayList<Integer> predictions, ArrayList<Integer> real) {
 
         double Acc;
@@ -178,6 +228,9 @@ public abstract class Classifiers implements Scorer{
 
     }
 
+    /**
+     * {@link evaluation.Scorer}
+     */
     public void printMetrics(Double Acc, ArrayList<Double> Sens, ArrayList<Double> Spec, ArrayList<Double> F1){
         Iterator<Double> sens = Sens.iterator();
         Iterator<Double> spec = Spec.iterator();
@@ -223,6 +276,9 @@ public abstract class Classifiers implements Scorer{
 
     }
 
+    /**
+     * {@link evaluation.Scorer}
+     */    
     public void measurePerformance(ArrayList<Integer> predictions ,ArrayList<Integer> real, int n_unique){
 
         ArrayList<int[][]> conf_list = this.calcConfusionMatrix(predictions, real, n_unique);
@@ -235,6 +291,9 @@ public abstract class Classifiers implements Scorer{
 
     }
 
+    /**
+     * {@link evaluation.Scorer}
+     */    
     public void printPredictions(ArrayList<Integer> predictions){
         Iterator<Integer> pred = predictions.iterator();
         int aux;
