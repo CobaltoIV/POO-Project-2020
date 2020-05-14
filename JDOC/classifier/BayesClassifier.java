@@ -62,13 +62,20 @@ public class BayesClassifier extends Classifiers {
         //Calculates the prediction for every instance 
         for (int i = 0; i < n_instances; i++) {
 
+            // Calculates probabiblity for each class
             for (int c = 0; c < uniqueClasses; c++) {
                 PB[c] = 1;
                 PB_condicionada[c] = 1;
+
+                // Gets next Node
                 Iterator<connection> auxIterator = this.tree.getDAG().iterator();
                 actualNode = auxIterator.next();
+
+                 // Root node
                 sonValue = test.get(labels.get(actualNode.getSon())).get(i);
                 PB[c] *= actualNode.getTeta()[0][sonValue][c];
+
+                 // Every other node
                 while (auxIterator.hasNext()) {
                     actualNode = auxIterator.next();
                     sonValue = test.get(labels.get(actualNode.getSon())).get(i);
@@ -77,6 +84,7 @@ public class BayesClassifier extends Classifiers {
                 }
                 PB[c] *= this.tree.getNodeC().getTetaC()[c];
             }
+            // See max
             for (int c = 0; c < uniqueClasses; c++) {
                 if (c == 0) {
                     max = PB[c];
