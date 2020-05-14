@@ -12,7 +12,7 @@ public class graph {
     /**
      * Creates a graph using Prim's Algorithm
      *
-     * @param maxtrix matrix containing all the alphas
+     * @param matrix matrix containing all the alphas
      */
     public void create(alpha[][] matrix) {
         int n_features = matrix.length;
@@ -83,7 +83,7 @@ public class graph {
      * Checks if all nodes are in the graph
      *
      * @param visited
-     * @return
+     * @return 
      */
     private int checkVisited(boolean[] visited) {
         for (int i = 0; i < visited.length; i++) {

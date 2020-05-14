@@ -7,6 +7,15 @@ import scoring.Edges;
 import scoring.LL_edges;
 import scoring.MDL_edges;
 
+/**
+ * The InputHandler class has the purpose of parsing a CSV file
+ * that contains all the data needed for the classifier: the label
+ * names and the values for each label.
+ * @author Ricardo Antão
+ * @author Francisco Quelincho
+ * @author Guilherme Mascarenhas
+ */
+
 public class InputHandler {
     /**
      * ArrayList of the labels extracted from the first line of the CSV file
