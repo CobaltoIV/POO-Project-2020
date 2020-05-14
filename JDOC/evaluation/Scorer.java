@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * The interface Scorer contains the functions to evaluate the classifier
  * performance.
+ * It is to be implemented by all classifiers.
  */
 public interface Scorer {
 

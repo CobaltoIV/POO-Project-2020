@@ -6,7 +6,8 @@ import java.util.Iterator;
 /**
  * The Alpha class has the purpose of calculating and storing the
  * information of a connection between 2 nodes. Each alpha object encapsulates
- * information about the connection. This state of information contains:
+ * information about the connection. The information stored in each alpha is the counts ((see {@link scoring.alpha#_Source})) and 
+ * weight (see {@link scoring.alpha#_weigth})of the connection
  * @author Ricardo Antão
  * @author Francisco Quelincho
  * @author Guilherme Mascarenhas
